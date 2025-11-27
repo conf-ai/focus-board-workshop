@@ -131,3 +131,11 @@ if (typeof Response === "undefined") {
 
 // Mock fetch globally
 global.fetch = jest.fn();
+
+// Mock pointer capture methods for Radix UI components (not available in jsdom)
+Element.prototype.hasPointerCapture = () => false;
+Element.prototype.setPointerCapture = () => {};
+Element.prototype.releasePointerCapture = () => {};
+
+// Mock scrollIntoView for Radix Select
+Element.prototype.scrollIntoView = jest.fn();
