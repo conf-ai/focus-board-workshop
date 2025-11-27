@@ -5,6 +5,7 @@ import { ProjectSwitcher } from "@/components/features/ProjectSwitcher";
 import { TaskList } from "@/components/features/TaskList";
 import { TaskSearch } from "@/components/features/TaskSearch";
 import { TaskFilters } from "@/components/features/TaskFilters";
+import { TaskSortSelect, SortOption } from "@/components/features/TaskSortSelect";
 import { TaskForm } from "@/components/features/TaskForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -47,6 +48,7 @@ export default function TaskManagement() {
   const [selectedProjectId, setSelectedProjectId] = React.useState<string>("");
   const [searchQuery, setSearchQuery] = React.useState("");
   const [filters, setFilters] = React.useState<TaskFilters>({ status: "all", priority: "all" });
+  const [sortOption, setSortOption] = React.useState<SortOption>("newest");
   const [loading, setLoading] = React.useState(false);
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
@@ -92,8 +94,11 @@ export default function TaskManagement() {
     fetchTasks();
   }, [selectedProjectId]);
 
-  // Filter and search tasks
+  // Filter, search, and sort tasks
   React.useEffect(() => {
+    const priorityWeight: Record<TaskPriority, number> = { high: 3, medium: 2, low: 1 };
+    const statusWeight: Record<TaskStatus, number> = { todo: 1, in_progress: 2, done: 3 };
+
     let filtered = tasks;
 
     // Search filter
@@ -113,8 +118,28 @@ export default function TaskManagement() {
       filtered = filtered.filter((task) => task.priority === filters.priority);
     }
 
-    setFilteredTasks(filtered);
-  }, [tasks, searchQuery, filters]);
+    // Sort tasks
+    const sorted = [...filtered].sort((a, b) => {
+      switch (sortOption) {
+        case "newest":
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        case "oldest":
+          return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+        case "priority_high":
+          return priorityWeight[b.priority] - priorityWeight[a.priority];
+        case "priority_low":
+          return priorityWeight[a.priority] - priorityWeight[b.priority];
+        case "status_open":
+          return statusWeight[a.status] - statusWeight[b.status];
+        case "status_done":
+          return statusWeight[b.status] - statusWeight[a.status];
+        default:
+          return 0;
+      }
+    });
+
+    setFilteredTasks(sorted);
+  }, [tasks, searchQuery, filters, sortOption]);
 
   const handleCreateTask = async (taskData: {
     title: string;
@@ -197,6 +222,7 @@ export default function TaskManagement() {
                   <TaskSearch value={searchQuery} onChange={setSearchQuery} />
                 </div>
                 <TaskFilters filters={filters} onFiltersChange={setFilters} />
+                <TaskSortSelect value={sortOption} onChange={setSortOption} />
               </div>
             </CardContent>
           </Card>
