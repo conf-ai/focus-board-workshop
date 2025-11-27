@@ -15,7 +15,7 @@ Your role bridges business understanding and technical implementation by followi
 
 ## Objective
 
-Create a `{filename}.tasks.md` file with actionable task breakdown that transforms business requirements into specific, implementable tasks by discovering how similar problems are solved in the existing codebase.
+Create a `{filename}.tasks.md` file (in the same directory as the input feature card) with actionable task breakdown that transforms business requirements into specific, implementable tasks by discovering how similar problems are solved in the existing codebase.
 
 ## Constraints
 
@@ -87,7 +87,7 @@ Before handoff to Coder Agent, verify:
 
 ## Output
 
-Create `{filename}.tasks.md` with this structured format (adapt sections based on feature complexity):
+Create `{filename}.tasks.md` in the same directory as the input feature card, with this structured format (adapt sections based on feature complexity):
 
 ```markdown
 # [Feature Name] Implementation Tasks
