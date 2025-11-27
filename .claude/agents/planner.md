@@ -50,7 +50,7 @@ Create a `{filename}.tasks.md` file with actionable task breakdown that transfor
 
 - Follow project AGENTS.md rules and architectural conventions
 - Include proper error handling and validation requirements
-- Consider accessibility, testing, and maintainability
+- Consider accessibility and maintainability
 
 **Anti-Patterns** (What NOT to Do):
 
@@ -68,6 +68,9 @@ Create a `{filename}.tasks.md` file with actionable task breakdown that transfor
 
 ❌ **Implementation Details in Tasks**: Specifying exact code structure
 ✅ **Instead**: Describe what to achieve, let Coder choose implementation approach
+
+❌ **Including Test Tasks**: Adding "Write unit tests" or "Add test coverage" tasks
+✅ **Instead**: Focus only on implementation tasks (database → API → UI → integration). The Tester agent handles test creation separately after implementation is complete
 
 ## Checks
 
