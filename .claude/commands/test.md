@@ -6,4 +6,4 @@ args:
     required: true
 ---
 
-I will write BDD tests to verify implementations solve real user problems for `$1` using the specialized Tester agent.
+Use the Task tool with subagent_type="tester" to test the feature defined in `$1`.

@@ -6,4 +6,4 @@ args:
     required: true
 ---
 
-I'll implement the planned feature following discovered patterns and applying explicit design principles using the specialized Coder agent for `$1` feature tasks.
+Use the Task tool with subagent_type="coder" to implement the feature defined in `$1`.

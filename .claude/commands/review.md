@@ -1,11 +1,9 @@
 ---
-description: "Capture architectural insights and update team knowledge after successful validation. Use after Tester has completed verification. (Alias for /reviewer)"
+description: "Perform code review for security, performance, and quality validation"
 args:
   - name: "feature_file"
-    description: "Path to the feature task file with completed Validation Phase"
+    description: "Path to the feature task file with completed Implementation Phase"
     required: true
 ---
 
-# /sage - Knowledge Capture & Team Learning
-
-I'll extract architectural insights from the completed work and update team knowledge using the specialized Reviewer agent.
+Use the Task tool with subagent_type="reviewer" to review the feature defined in `$1`.
