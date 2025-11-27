@@ -1,9 +1,9 @@
 ---
-description: "Analyze business problem and discover technical approach. Works with feature cards and requirements documents. (Alias for /planner)"
+description: "Analyze business problem and create task breakdown"
 args:
   - name: "input_file"
-    description: "Path to feature card or requirements document (e.g., backlog/micro/01-invalid-data-crashes.md)"
+    description: "Path to feature card or requirements document"
     required: true
 ---
 
-I will analyze business problems and create actionable task breakdowns by discovering existing codebase patterns for `$1` using the specialized Planner agent.
+Use the Task tool with subagent_type="planner" to analyze the feature defined in `$1`.
