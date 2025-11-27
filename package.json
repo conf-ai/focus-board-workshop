@@ -14,7 +14,7 @@
     "test:watch": "jest --watch",
     "tsc:check": "tsc --noEmit",
     "database:up": "docker compose -f infra/docker-compose.yml up -d",
-    "database:down": "docker compose -f infra/docker-compose.yml down",
+    "database:down": "docker compose -f infra/docker-compose.yml down -v",
     "database:logs": "docker compose -f infra/docker-compose.yml logs -f db",
     "setup": "node scripts/setup.js",
     "verify": "node scripts/verify.js",
