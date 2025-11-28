@@ -29,8 +29,8 @@ npm install
 # Start PostgreSQL database
 npm run database:up
 
-# Verify workshop setup
-npm run verify
+# Setup workshop
+npm run setup
 
 # Start development server
 npm run dev
